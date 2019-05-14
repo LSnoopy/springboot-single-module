@@ -1,0 +1,75 @@
+{
+  "groups": [
+    {
+      "name": "config",
+      "type": "org.knowleaf.common.config.PropertyConfig",
+      "sourceType": "org.knowleaf.common.config.PropertyConfig"
+    },
+    {
+      "name": "config.redis",
+      "type": "org.knowleaf.common.config.PropertyConfig$RedisConfig",
+      "sourceType": "org.knowleaf.common.config.PropertyConfig",
+      "sourceMethod": "getRedis()"
+    },
+    {
+      "name": "config.oss",
+      "type": "org.knowleaf.common.config.PropertyConfig$OssConfig",
+      "sourceType": "org.knowleaf.common.config.PropertyConfig",
+      "sourceMethod": "getOss()"
+    }
+  ],
+  "properties": [
+    {
+      "name": "config.env",
+      "type": "java.lang.String",
+      "description": "current environment",
+      "sourceType": "org.knowleaf.common.config.PropertyConfig"
+    },
+    {
+      "name": "config.domainHost",
+      "type": "java.lang.String",
+      "sourceType": "org.knowleaf.common.config.PropertyConfig"
+    },
+    {
+      "name": "config.redis.enable",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.knowleaf.common.config.PropertyConfig$RedisConfig",
+      "defaultValue": false
+    },
+    {
+      "name": "config.redis.url",
+      "type": "java.lang.String",
+      "sourceType": "org.knowleaf.common.config.PropertyConfig$RedisConfig"
+    },
+    {
+      "name": "config.redis.pwd",
+      "type": "java.lang.String",
+      "sourceType": "org.knowleaf.common.config.PropertyConfig$RedisConfig"
+    },
+    {
+      "name": "config.redis.port",
+      "type": "java.lang.Integer",
+      "sourceType": "org.knowleaf.common.config.PropertyConfig$RedisConfig"
+    },
+    {
+      "name": "config.oss.bucketName",
+      "type": "java.lang.String",
+      "sourceType": "org.knowleaf.common.config.PropertyConfig$OssConfig"
+    },
+    {
+      "name": "config.oss.endpoint",
+      "type": "java.lang.String",
+      "sourceType": "org.knowleaf.common.config.PropertyConfig$OssConfig"
+    },
+    {
+      "name": "config.oss.accessKeyId",
+      "type": "java.lang.String",
+      "sourceType": "org.knowleaf.common.config.PropertyConfig$OssConfig"
+    },
+    {
+      "name": "config.oss.secretAccessKey",
+      "type": "java.lang.String",
+      "sourceType": "org.knowleaf.common.config.PropertyConfig$OssConfig"
+    }
+  ]
+}
