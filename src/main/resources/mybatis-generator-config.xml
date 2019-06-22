@@ -15,19 +15,13 @@
     <!-- targetRuntime：设置生成的文件适用于那个 mybatis 版本 -->
     <context id="default" targetRuntime="MyBatis3">
 
-        <!--jdbc的数据库连接-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/test?serverTimezone=GMT%2B8&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;remarksReporting=true"
-                        userId="root"
-                        password="lj101010...">
-        </jdbcConnection>
-
         <!--  此处是将Example改名为Criteria 当然 想改成什么都行  -->
         <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
             <property name="searchString" value="Example"/>
             <property name="replaceString" value="Criteria"/>
         </plugin>
 
+        <!--dmain 实现序列化接口-->
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
 
         <!--optional,旨在创建class时，对注释进行控制-->
@@ -36,6 +30,13 @@
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <!--<property name="suppressAllComments" value="true"/>-->
         </commentGenerator>
+
+        <!--jdbc的数据库连接-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/sys?serverTimezone=GMT%2B8&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;remarksReporting=true"
+                        userId="root"
+                        password="lj101010...">
+        </jdbcConnection>
 
         <!--非必须，类型处理器，在数据库类型和java类型之间的转换控制-->
         <javaTypeResolver>
@@ -47,7 +48,7 @@
 
         <!-- targetPackage：生成的实体类所在的包 -->
         <!-- targetProject：生成的实体类所在的硬盘位置 -->
-        <javaModelGenerator targetPackage="org.knowleaf.common.domain"
+        <javaModelGenerator targetPackage="org.knowleaf.common.domain.second"
                             targetProject="src/main/java">
             <!-- 是否允许子包 -->
             <property name="enableSubPackages" value="true"/>
@@ -60,7 +61,7 @@
         </javaModelGenerator>
 
         <!-- targetPackage 和 targetProject：生成的 mapper 文件的包和位置 -->
-        <sqlMapGenerator targetPackage="org.knowleaf.common.mapper.xml"
+        <sqlMapGenerator targetPackage="org.knowleaf.common.mapper.second.xml"
                          targetProject="src/main/java">
             <!-- 针对数据库的一个配置，是否把 schema 作为字包名 -->
             <property name="enableSubPackages" value="true"/>
@@ -68,14 +69,16 @@
 
         <!-- targetPackage 和 targetProject：生成的 interface 文件的包和位置 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="org.knowleaf.common.mapper" targetProject="src/main/java">
+                             targetPackage="org.knowleaf.common.mapper.second" targetProject="src/main/java">
             <!-- 针对 oracle 数据库的一个配置，是否把 schema 作为字包名 -->
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="test_user" domainObjectName="TestUser"
+
+        <table tableName="sys_config" domainObjectName="SysConfig"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"/>
     </context>
+
 </generatorConfiguration>

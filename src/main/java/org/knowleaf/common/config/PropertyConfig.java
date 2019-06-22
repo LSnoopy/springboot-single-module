@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * 一些项目相关的属性配置
  */
 @Component
-@ConfigurationProperties(prefix = "config")
+@ConfigurationProperties(prefix = "system.config")
 public class PropertyConfig {
 
     private String env; //运行环境的配置，dev-本地开发，test-测试环境，production-线上
