@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -23,7 +24,7 @@ import javax.sql.DataSource;
         sqlSessionTemplateRef = "firstSqlSessionTemplate")
 public class MybatisConfigFirst {
 
-    private static final String mapperResourcePath = "classpath:org/knowleaf/common/mapper/first/xml/*.xml";
+    private static String mapperResourcePath;
 
     @Resource
 //    @Qualifier("firstDataSource")
@@ -53,4 +54,8 @@ public class MybatisConfigFirst {
         return factoryBean.getObject();
     }
 
+    @Value("${mybatis.config.mapper.resource.path.first}")
+    public void setMapperResourcePath(String mapperResourcePath) {
+        MybatisConfigFirst.mapperResourcePath = mapperResourcePath;
+    }
 }

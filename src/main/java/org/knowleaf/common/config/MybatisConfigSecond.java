@@ -5,6 +5,7 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -23,7 +24,7 @@ import javax.sql.DataSource;
         sqlSessionTemplateRef = "secondSqlSessionTemplate")
 public class MybatisConfigSecond {
 
-    private static final String mapperResourcePath = "classpath:org/knowleaf/common/mapper/second/xml/*.xml";
+    private static String mapperResourcePath;
 
     @Resource
 //    @Qualifier("secondDataSource")
@@ -47,5 +48,10 @@ public class MybatisConfigSecond {
                 new PathMatchingResourcePatternResolver()
                         .getResources(mapperResourcePath));
         return factoryBean.getObject();
+    }
+
+    @Value("${mybatis.config.mapper.resource.path.second}")
+    public void setMapperResourcePath(String mapperResourcePath) {
+        MybatisConfigSecond.mapperResourcePath = mapperResourcePath;
     }
 }
