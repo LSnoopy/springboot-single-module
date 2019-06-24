@@ -5,14 +5,13 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.junit.Test;
 import org.knowleaf.common.config.PropertyConfig;
-import org.knowleaf.common.domain.first.TestUser;
-import org.knowleaf.common.domain.first.TestUserQuery;
-import org.knowleaf.common.domain.second.SysConfig;
-import org.knowleaf.common.mapper.first.TestUserMapper;
-import org.knowleaf.common.mapper.second.SysConfigMapper;
+import org.knowleaf.common.domain.first.User;
+import org.knowleaf.common.domain.second.Sys;
+import org.knowleaf.common.mapper.first.UserMapper;
+import org.knowleaf.common.mapper.second.SysMapper;
+import org.knowleaf.service.biz.BizUserService;
 
 import javax.annotation.Resource;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,34 +23,39 @@ public class CommonTest extends BaseSpringBootJunitTest {
     @Resource
     private PropertyConfig propertyConfig;
     @Resource
-    private TestUserMapper testUserMapper;
+    private UserMapper userMapper;
     @Resource
-    private SysConfigMapper sysConfigMapper;
+    private SysMapper sysMapper;
+    @Resource
+    private BizUserService bizUserService;
+
+    @Test
+    public void userService() {
+        User u = new User();
+        u.setUserName("000");
+        bizUserService.insert(u);
+    }
 
     @Test
     public void pageHelper() {
-        Page<TestUser> page = PageHelper.startPage(1, 1);
-        TestUserQuery query = new TestUserQuery();
-        List<TestUser> list = testUserMapper.selectByExample(query);
+        Page<User> page = PageHelper.startPage(1, 1);
+        List<User> list = userMapper.select(new User());
         System.out.println(page.getTotal());
         System.out.println(JSON.toJSONString(list));
     }
 
     @Test
     public void userMapper() {
-        TestUser u = new TestUser();
+        User u = new User();
         u.setUserName("dsadsa");
-        testUserMapper.insertSelective(u);
+        userMapper.insertSelective(u);
     }
 
     @Test
     public void sysConfigMapper() {
-        SysConfig s = new SysConfig();
-        s.setSetBy("t");
-        s.setSetTime(new Date());
-        s.setValue("v");
-        s.setVariable("va");
-        sysConfigMapper.insertSelective(s);
+        Sys s = new Sys();
+        s.setSysName("ss");
+        sysMapper.insertSelective(s);
     }
 
     @Test

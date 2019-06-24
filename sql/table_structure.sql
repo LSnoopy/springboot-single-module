@@ -5,10 +5,8 @@ CREATE TABLE `test_user` (
   KEY `un_key` (`user_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
-CREATE TABLE `sys_config` (
-  `variable` varchar(128) NOT NULL,
-  `value` varchar(128) DEFAULT NULL,
-  `set_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `set_by` varchar(128) DEFAULT NULL,
-  PRIMARY KEY (`variable`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `test_sys` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `sys_name` varchar(20) DEFAULT NULL COMMENT '用户名',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
